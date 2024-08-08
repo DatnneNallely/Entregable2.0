@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejemplo JavaScript con jQuery y AngularJS</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FDF3F8; /* Fondo rosa pastel */
+            color: #7C4D7F; /* Texto lila */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        #container {
+            max-width: 800px;
+            width: 80%;
+            margin-top: 20px;
+            background-color: rgba(222, 194, 216, 0.9); /* Fondo lila pastel */
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+        }
+
+        h1 {
+            color: #D397A3; /* Título lila pastel */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #data-table th, #data-table td {
+            border: 1px solid #D397A3; /* Bordes lila pastel */
+            padding: 12px; /* Aumentamos el espacio alrededor del contenido */
+            text-align: left;
+            font-size: 16px; /* Aumentamos el tamaño del texto */
+        }
+
+        #data-table th {
+            background-color: #F3D9EB; /* Encabezado rosa pastel */
+        }
+
+        #data-table tbody tr:nth-child(even) {
+            background-color: #E8D2E4; /* Fondo de fila rosa pastel */
+        }
+
+        #data-table tbody tr:hover {
+            background-color: #F3D9EB; /* Fondo de fila al pasar el ratón rosa pastel */
+        }
+    </style>
+</head>
+<body>
+
+<div ng-controller="MyController">
+    <h1 id="titulo">{{ mensaje }}</h1>
+
+    <button ng-click="cambiarMensaje()">Cambiar Mensaje</button>
+    
+    <button ng-click="restaurarMensaje()">Restaurar Mensaje Anterior</button>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+
+    app.controller('MyController', function($scope) {
+        var mensajeOriginal = 'Hola desde AngularJS';
+        $scope.mensaje = mensajeOriginal;
+
+        $scope.cambiarMensaje = function() {
+            $scope.mensaje = prompt('Ingrese el nuevo mensaje:', $scope.mensaje);
+        };
+
+        $scope.restaurarMensaje = function() {
+            $scope.mensaje = mensajeOriginal;
+        };
+    });
+</script>
+
+</body>
+</html>
